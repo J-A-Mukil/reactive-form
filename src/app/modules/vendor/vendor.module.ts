@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { VendorRoutingModule } from './vendor-routing.module';
 import { ActiveVendorComponent } from './active-vendor/active-vendor.component';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { ActiveVendorComponent } from './active-vendor/active-vendor.component';
   ],
   imports: [
     CommonModule,
-    VendorRoutingModule
+    VendorRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class VendorModule { }

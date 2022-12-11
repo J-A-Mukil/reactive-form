@@ -1,38 +1,45 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
                 <label for="fname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="">
+                <input type="text" formControlName="userName" [class.is-invalid]="userName!.invalid && userName!.touched" class="form-control" id="fname" placeholder="">
+                <small [class.d-none]="userName!.valid || userName!.untouched">Name is required</small>
             </div>
 
             <div class="mb-3">
                 <label for="username" class="form-label">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="">
+                <input type="email" formControlName="email" [class.is-invalid]="email!.invalid && (email!.dirty || email!.touched)" class="form-control" id="username" placeholder="">
+                <small [class.d-none]="email!.valid || email!.untouched">Email is required</small>
             </div>
 
             <div class="mb-3">
                 <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"></textarea>
+                <textarea formControlName="bio" [class.is-invalid]="bio!.invalid && (bio!.dirty || bio!.touched)" class="form-control" id="bio" rows="3"></textarea>
+                <small [class.d-none]="bio!.valid || bio!.untouched">Bio is required</small>
             </div>
 
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
+                <select formControlName="domain" class="form-select" [class.is-invalid]="domain!.invalid && (domain!.dirty || domain!.touched)" aria-label="Default select example">
                     <option value="">Please Select Domain</option>
                     <option value="erp">ERP</option>
                     <option value="crm">CRM</option>
                     <option value="ecommerce">E-commerce</option>
                 </select>
+                <small [class.d-none]="domain!.valid || domain!.untouched">Domain is required</small>
             </div>
 
             <div class="mb-3">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary">Submit</button>
             </div>
+        </form>
         </div>
-
         <div class="col-md-6">
             <h1>Object should be print here</h1>
+            <div *ngFor="let d of data | keyvalue">
+                {{d.key}} : {{d.value}}
+            </div>
         </div>
     </div>
-
 </div>
